@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   Dimensions,
@@ -49,7 +50,7 @@ const SignIn = () => {
             title="Email"
             value={form.email}
             handleChangeText={(e) => setForm({ ...form, email: e })}
-            otherStyles="mt-7"
+            // otherStyles="mt-7"
             keyboardType="email-address"
           />
 
@@ -57,9 +58,21 @@ const SignIn = () => {
             title="Password"
             value={form.password}
             handleChangeText={(e) => setForm({ ...form, password: e })}
-            otherStyles="mt-7"
+            // otherStyles="mt-7"
           />
           <CustomButton title="Log In" />
+          <Text style={{ color: "#fff", textAlign: "center", marginTop: 20 }}>
+            Don't have an account?{" "}
+            <Text
+              style={{
+                color: colorTheme.colors.secondary.DEFAULT,
+                fontWeight: "bold",
+              }}
+              onPress={() => router.push("/(auth)/sign-up")}
+            >
+              Sign Up
+            </Text>
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>

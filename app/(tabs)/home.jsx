@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 
 const Home = () => {
   return (
     <View>
+      <StatusBar />
       <Text>Home</Text>
     </View>
   );

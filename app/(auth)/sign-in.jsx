@@ -9,9 +9,11 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "react-native-web";
 import logo from "../../assets/images/logo.png";
 import CustomButton from "../../components/CustomButton";
 import FormField from "../../components/FormField";
+import { signIn } from "../../services/appwrite";
 import colorTheme from "../../utils/colorsTheme";
 
 const SignIn = () => {
@@ -20,6 +22,20 @@ const SignIn = () => {
     password: "",
   });
   const { height: screenHeight } = Dimensions.get("window");
+
+  const submit = async () => {
+    console.log(form.email, form.password);
+    if (!form.email || !form.password) {
+      return alert("Please fill all fields");
+    }
+
+    try {
+      await signIn(form.email, form.password);
+      router.replace("/home");
+    } catch (error) {
+      console.error("Error during sign in:", error);
+    }
+  };
 
   return (
     <SafeAreaView
@@ -60,7 +76,7 @@ const SignIn = () => {
             handleChangeText={(e) => setForm({ ...form, password: e })}
             // otherStyles="mt-7"
           />
-          <CustomButton title="Log In" />
+          <CustomButton title="Log In" handlePress={submit} />
           <Text style={{ color: "#fff", textAlign: "center", marginTop: 20 }}>
             Don't have an account?{" "}
             <Text
@@ -75,6 +91,7 @@ const SignIn = () => {
           </Text>
         </View>
       </ScrollView>
+      <StatusBar />
     </SafeAreaView>
   );
 };

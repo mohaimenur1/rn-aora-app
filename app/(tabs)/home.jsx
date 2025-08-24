@@ -1,11 +1,16 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { FlatList, StatusBar, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   return (
-    <View>
+    <SafeAreaView>
       <StatusBar />
-      <Text>Home</Text>
-    </View>
+      <FlatList
+        data={[{ $id: 1 }]}
+        keyExtractor={(item) => item.$id}
+        renderItem={({ item }) => <Text>{item.$id}</Text>}
+      />
+    </SafeAreaView>
   );
 };
 

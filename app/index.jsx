@@ -9,15 +9,19 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import colorTheme from "../utils/colorsTheme";
 
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import splashImage from "../assets/images/cards.png";
 import logo from "../assets/images/logo.png";
 import path from "../assets/images/path.png";
 
+import { useGlobalAuthContext } from "@/context/authContext";
 import CustomButton from "../components/CustomButton";
 
 export default function Index() {
   const { height: screenHeight } = Dimensions.get("window");
+  const { isLoading, isLoggedIn } = useGlobalAuthContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
 
   return (
     <SafeAreaView

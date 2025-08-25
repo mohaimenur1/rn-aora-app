@@ -8,7 +8,9 @@ const Home = () => {
       <FlatList
         data={[{ $id: 1 }]}
         keyExtractor={(item) => item.$id}
-        renderItem={({ item }) => <Text>{item.$id}</Text>}
+        renderItem={({ item }) => (
+          <Text className="text-8xl">this is a text</Text>
+        )}
       />
     </SafeAreaView>
   );

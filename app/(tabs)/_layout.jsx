@@ -12,10 +12,16 @@ const TabLayout = () => {
         screenOptions={{
           tabBarActiveTintColor: "#FFA001",
           tabBarInactiveTintColor: "#CDCDE0",
+          headerStyle: {
+            backgroundColor: "#161622",
+          },
+          // headerShadowVisible: false,
+          // headerTintColor: "#fff",
           tabBarStyle: {
             backgroundColor: "#161622",
             borderTopColor: "#232533",
             borderTopWidth: 1,
+            height: 84,
           },
         }}
       >

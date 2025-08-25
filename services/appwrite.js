@@ -92,4 +92,17 @@ export const getCurrentUser = async () => {
   }
 };
 
+export const getAllPost = async () => {
+  try {
+    const getPost = await database.listDocuments(
+      config.databaseId,
+      config.vedioCollectionId
+    );
+    return getPost.documents;
+  } catch (error) {
+    console.log("error fetching post data", error);
+    throw new Error(error);
+  }
+};
+
 export { account, client, config, database };

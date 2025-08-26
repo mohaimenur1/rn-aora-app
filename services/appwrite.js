@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import {
   Account,
   Avatars,
@@ -65,7 +66,10 @@ export const signIn = async (email, password) => {
     return session;
   } catch (error) {
     console.error("Error signing in:", error);
-    throw new Error(error);
+    if (error?.message?.includes("missing scope (account)")) {
+      throw new Error("Session expired. Please sign in again.");
+    }
+    // throw new Error(error);
   }
 };
 
@@ -101,6 +105,16 @@ export const getAllPost = async () => {
     return getPost.documents;
   } catch (error) {
     console.log("error fetching post data", error);
+    throw new Error(error);
+  }
+};
+
+export const logOutUser = async () => {
+  try {
+    await account.deleteSession("current");
+    router.replace("/(auth)/sign-in");
+  } catch (error) {
+    console.log("Error in logOut functionality", error);
     throw new Error(error);
   }
 };
